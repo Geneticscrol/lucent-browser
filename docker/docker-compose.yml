@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  lucent-dev:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      # Mount your customizations for live editing
+      - ../chrome:/build/lucent-profile/chrome
+      - ../configs:/build/configs
+    environment:
+      - DISPLAY=${DISPLAY}
+    network_mode: host
+    stdin_open: true
+    tty: true
