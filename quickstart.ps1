@@ -52,7 +52,8 @@ $drive = (Get-Location).Drive.Name + ":"
 $freeSpace = (Get-PSDrive $drive.TrimEnd(':')).Free / 1GB
 if ($freeSpace -lt 30) {
     Write-Host "⚠️  WARNING: Only $([math]::Round($freeSpace, 2)) GB free. Need 30+ GB!" -ForegroundColor Yellow
-} else {
+}
+else {
     Write-Host "✓ Sufficient disk space: $([math]::Round($freeSpace, 2)) GB free" -ForegroundColor Green
 }
 
@@ -92,7 +93,8 @@ switch ($choice) {
         
         if (Test-Path "firefox-source") {
             python build-scripts/build.py
-        } else {
+        }
+        else {
             Write-Host "❌ Firefox source not found!" -ForegroundColor Red
             Write-Host "   Please run Setup (option 1) first" -ForegroundColor Yellow
         }
@@ -105,7 +107,8 @@ switch ($choice) {
         
         if (Test-Path "firefox-source/obj-lucent") {
             python build-scripts/run.py
-        } else {
+        }
+        else {
             Write-Host "❌ Built browser not found!" -ForegroundColor Red
             Write-Host "   Please build first (option 2)" -ForegroundColor Yellow
         }
