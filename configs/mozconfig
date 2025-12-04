@@ -1,0 +1,66 @@
+# Lucent Browser Build Configuration (mozconfig)
+# This file tells the Firefox build system how to compile Lucent Browser
+
+# Build a custom Firefox application
+ac_add_options --enable-application=browser
+
+# Branding
+ac_add_options --with-branding=browser/branding/lucent
+
+# Optimization
+ac_add_options --enable-optimize
+ac_add_options --enable-release
+ac_add_options --disable-debug
+ac_add_options --disable-debug-symbols
+
+# Features to enable
+ac_add_options --enable-hardening
+ac_add_options --enable-rust-simd
+ac_add_options --enable-lto=cross  # Link Time Optimization
+
+# Features to disable (remove bloat and telemetry)
+ac_add_options --disable-crashreporter
+ac_add_options --disable-updater
+ac_add_options --disable-tests
+ac_add_options --disable-parental-controls
+ac_add_options --disable-webspeech
+ac_add_options --disable-webspeechtestbackend
+ac_add_options --disable-synth-speechd
+ac_add_options --disable-eme  # Encrypted Media Extensions (DRM)
+
+# Privacy & Security
+ac_add_options --enable-privacy
+ac_add_options --disable-telemetry
+ac_add_options --disable-default-browser-agent
+
+# Graphics and rendering
+ac_add_options --enable-webrender
+ac_add_options --enable-av1
+
+# Compiler settings
+export CC=clang
+export CXX=clang++
+
+# Use system libraries where possible (uncomment for Linux)
+# ac_add_options --with-system-zlib
+# ac_add_options --with-system-bz2
+
+# Distribution ID
+ac_add_options --with-distribution-id=io.github.geneticscrol.lucent
+
+# Update channel
+ac_add_options --enable-update-channel=release
+
+# Custom app name
+export MOZ_APP_DISPLAYNAME="Lucent Browser"
+export MOZ_APP_NAME="lucent"
+export MOZ_APP_VENDOR="Lucent"
+
+# Disable Mozilla services
+export MOZ_NORMANDY=0
+export MOZ_SERVICES_HEALTHREPORT=0
+export MOZ_TELEMETRY_REPORTING=0
+export MOZ_DATA_REPORTING=0
+
+# Build output
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-lucent

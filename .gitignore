@@ -1,0 +1,57 @@
+# Directories to ignore
+firefox-source/
+lucent-profile/
+obj-lucent/
+dist/
+build/
+
+# Downloaded archives
+*.tar.xz
+*.tar.gz
+*.zip
+*.dmg
+*.exe
+*.deb
+*.rpm
+
+# Build artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.pdb
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test coverage
+.coverage
+htmlcov/

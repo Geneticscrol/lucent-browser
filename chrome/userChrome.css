@@ -1,0 +1,278 @@
+/*
+ * Lucent Browser - userChrome.css
+ * Custom UI styling for translucent browser interface
+ * 
+ * This file modifies the Firefox UI to create a translucent, modern look
+ */
+
+/* ===== ROOT VARIABLES ===== */
+:root {
+  /* Transparency settings */
+  --lucent-window-opacity: 0.85;
+  --lucent-toolbar-opacity: 0.75;
+  --lucent-sidebar-opacity: 0.80;
+  --lucent-menu-opacity: 0.90;
+  
+  /* Blur effects */
+  --lucent-blur-strength: 20px;
+  --lucent-blur-strong: 30px;
+  
+  /* Colors with transparency */
+  --lucent-bg-primary: rgba(30, 30, 35, 0.7);
+  --lucent-bg-secondary: rgba(40, 40, 45, 0.6);
+  --lucent-bg-tertiary: rgba(50, 50, 55, 0.5);
+  --lucent-accent: rgba(100, 150, 255, 0.8);
+  --lucent-text: rgba(255, 255, 255, 0.95);
+  
+  /* Animations */
+  --lucent-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== MAIN WINDOW ===== */
+#main-window {
+  background: transparent !important;
+  backdrop-filter: blur(var(--lucent-blur-strength));
+  -moz-appearance: none !important;
+}
+
+/* Remove default background */
+#browser {
+  background: transparent !important;
+}
+
+#navigator-toolbox {
+  background: var(--lucent-bg-primary) !important;
+  backdrop-filter: blur(var(--lucent-blur-strong));
+  border: none !important;
+}
+
+/* ===== TABS ===== */
+.tabbrowser-tab {
+  background: transparent !important;
+  backdrop-filter: blur(var(--lucent-blur-strength));
+  transition: var(--lucent-transition);
+}
+
+.tabbrowser-tab:hover {
+  background: var(--lucent-bg-secondary) !important;
+}
+
+.tabbrowser-tab[selected="true"] {
+  background: var(--lucent-bg-secondary) !important;
+  border-bottom: 2px solid var(--lucent-accent) !important;
+}
+
+.tab-background {
+  background: transparent !important;
+  border: none !important;
+}
+
+.tab-content {
+  backdrop-filter: blur(10px);
+}
+
+/* Tab label */
+.tab-label {
+  color: var(--lucent-text) !important;
+  font-weight: 500;
+}
+
+/* ===== TOOLBAR ===== */
+#nav-bar {
+  background: var(--lucent-bg-secondary) !important;
+  backdrop-filter: blur(var(--lucent-blur-strong));
+  border: none !important;
+  padding: 8px !important;
+}
+
+/* URL bar */
+#urlbar {
+  background: var(--lucent-bg-tertiary) !important;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  color: var(--lucent-text) !important;
+  transition: var(--lucent-transition);
+}
+
+#urlbar:hover {
+  background: rgba(60, 60, 65, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+#urlbar[focused="true"] {
+  background: rgba(70, 70, 75, 0.7) !important;
+  border-color: var(--lucent-accent) !important;
+  box-shadow: 0 0 0 2px rgba(100, 150, 255, 0.3) !important;
+}
+
+#urlbar-background {
+  background: transparent !important;
+  border: none !important;
+}
+
+#urlbar-input {
+  color: var(--lucent-text) !important;
+}
+
+/* Search suggestions dropdown */
+.urlbarView {
+  background: var(--lucent-menu-opacity) !important;
+  backdrop-filter: blur(var(--lucent-blur-strong));
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  margin-top: 4px !important;
+}
+
+.urlbarView-row {
+  background: transparent !important;
+  transition: var(--lucent-transition);
+}
+
+.urlbarView-row:hover {
+  background: var(--lucent-bg-secondary) !important;
+}
+
+/* ===== BUTTONS ===== */
+.toolbarbutton-1 {
+  background: transparent !important;
+  border: none !important;
+  transition: var(--lucent-transition);
+  border-radius: 6px !important;
+}
+
+.toolbarbutton-1:hover {
+  background: var(--lucent-bg-tertiary) !important;
+}
+
+.toolbarbutton-1:active {
+  background: rgba(100, 150, 255, 0.3) !important;
+}
+
+/* ===== SIDEBAR ===== */
+#sidebar-box {
+  background: var(--lucent-bg-primary) !important;
+  backdrop-filter: blur(var(--lucent-blur-strong));
+  border: none !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+#sidebar-header {
+  background: var(--lucent-bg-secondary) !important;
+  border: none !important;
+}
+
+/* ===== MENUS & POPUPS ===== */
+menupopup,
+popup {
+  background: var(--lucent-menu-opacity) !important;
+  backdrop-filter: blur(var(--lucent-blur-strong));
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+}
+
+menuitem,
+menu {
+  background: transparent !important;
+  color: var(--lucent-text) !important;
+  transition: var(--lucent-transition);
+  border-radius: 4px !important;
+}
+
+menuitem:hover,
+menu:hover {
+  background: var(--lucent-bg-secondary) !important;
+}
+
+menuseparator {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ===== CONTEXT MENU ===== */
+#contentAreaContextMenu {
+  background: var(--lucent-menu-opacity) !important;
+  backdrop-filter: blur(var(--lucent-blur-strong));
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+}
+
+/* ===== FINDBAR ===== */
+.findbar-textbox {
+  background: var(--lucent-bg-tertiary) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 6px !important;
+  color: var(--lucent-text) !important;
+}
+
+/* ===== NOTIFICATIONS ===== */
+notification,
+.notificationbox-stack {
+  background: var(--lucent-bg-secondary) !important;
+  backdrop-filter: blur(var(--lucent-blur-strength));
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+}
+
+/* ===== SCROLLBARS ===== */
+scrollbar {
+  background: transparent !important;
+}
+
+thumb {
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 4px !important;
+}
+
+thumb:hover {
+  background: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* ===== DEVELOPER TOOLS ===== */
+#developer-toolbar {
+  background: var(--lucent-bg-primary) !important;
+  backdrop-filter: blur(var(--lucent-blur-strength));
+  border: none !important;
+}
+
+/* ===== SMOOTH ANIMATIONS ===== */
+* {
+  transition: background 0.2s ease, border 0.2s ease, opacity 0.2s ease;
+}
+
+/* ===== WINDOWS 11 SPECIFIC ===== */
+@media (-moz-platform: windows) {
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --lucent-bg-primary: rgba(32, 32, 32, 0.7);
+      --lucent-bg-secondary: rgba(43, 43, 43, 0.6);
+    }
+  }
+  
+  /* Mica-like effect for Windows 11 */
+  #main-window[tabsintitlebar] {
+    backdrop-filter: blur(var(--lucent-blur-strong)) saturate(1.5);
+  }
+}
+
+/* ===== LINUX SPECIFIC ===== */
+@media (-moz-platform: linux) {
+  #main-window {
+    backdrop-filter: blur(var(--lucent-blur-strength));
+  }
+}
+
+/* ===== MACOS SPECIFIC ===== */
+@media (-moz-platform: macos) {
+  :root {
+    /* Vibrancy effect for macOS */
+    --lucent-blur-strength: 30px;
+  }
+  
+  #main-window {
+    backdrop-filter: blur(var(--lucent-blur-strength)) saturate(1.8);
+    -moz-appearance: -moz-mac-vibrancy-dark;
+  }
+}

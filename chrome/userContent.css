@@ -1,0 +1,263 @@
+/*
+ * Lucent Browser - userContent.css
+ * Makes webpage content translucent while preserving readability
+ * 
+ * This file is injected into all web pages to create transparency effects
+ */
+
+/* ===== ROOT VARIABLES ===== */
+@-moz-document url-prefix() {
+  :root {
+    --lucent-content-opacity: 0.90;
+    --lucent-bg-override: rgba(255, 255, 255, 0.05);
+    --lucent-bg-dark: rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* ===== GLOBAL BACKGROUND TRANSPARENCY ===== */
+@-moz-document url-prefix() {
+  /* Make body backgrounds translucent */
+  body {
+    background: transparent !important;
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Override solid backgrounds */
+  body[style*="background-color"],
+  body[style*="background:"] {
+    background: var(--lucent-bg-override) !important;
+  }
+}
+
+/* ===== COMMON ELEMENTS ===== */
+@-moz-document url-prefix() {
+  /* Headers and navigation */
+  header,
+  nav,
+  .header,
+  .navbar,
+  .nav {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(15px);
+  }
+  
+  /* Sidebars */
+  aside,
+  .sidebar,
+  .side-nav {
+    background: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(12px);
+  }
+  
+  /* Footers */
+  footer,
+  .footer {
+    background: rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Content containers */
+  main,
+  article,
+  section,
+  .content,
+  .container {
+    background: transparent !important;
+  }
+  
+  /* Cards and panels */
+  .card,
+  .panel,
+  .box {
+    background: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* ===== PRESERVE IMPORTANT ELEMENTS ===== */
+@-moz-document url-prefix() {
+  /* Keep images fully opaque */
+  img,
+  picture,
+  svg,
+  canvas,
+  video {
+    opacity: 1 !important;
+  }
+  
+  /* Keep text readable */
+  p, span, a, h1, h2, h3, h4, h5, h6,
+  li, td, th, label, button {
+    /* Text should remain fully visible */
+    color: inherit !important;
+  }
+  
+  /* Preserve code blocks */
+  code,
+  pre,
+  .code,
+  .highlight {
+    background: rgba(40, 40, 40, 0.85) !important;
+    backdrop-filter: blur(5px);
+  }
+}
+
+/* ===== MODALS AND OVERLAYS ===== */
+@-moz-document url-prefix() {
+  .modal,
+  .overlay,
+  .popup,
+  .dialog {
+    background: rgba(30, 30, 30, 0.85) !important;
+    backdrop-filter: blur(20px);
+  }
+  
+  .modal-backdrop,
+  .overlay-backdrop {
+    background: rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(5px);
+  }
+}
+
+/* ===== FORMS ===== */
+@-moz-document url-prefix() {
+  input,
+  textarea,
+  select {
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(8px);
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    background: rgba(255, 255, 255, 0.12) !important;
+  }
+}
+
+/* ===== BUTTONS ===== */
+@-moz-document url-prefix() {
+  button,
+  .button,
+  .btn {
+    background: rgba(100, 150, 255, 0.2) !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s ease;
+  }
+  
+  button:hover,
+  .button:hover,
+  .btn:hover {
+    background: rgba(100, 150, 255, 0.3) !important;
+  }
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+@-moz-document url-prefix() {
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: transparent !important;
+    }
+    
+    header, nav, .header, .navbar {
+      background: rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .card, .panel, .box {
+      background: rgba(0, 0, 0, 0.08) !important;
+    }
+  }
+}
+
+/* ===== SITE-SPECIFIC OVERRIDES ===== */
+
+/* Google Search */
+@-moz-document domain(google.com) {
+  body {
+    background: transparent !important;
+  }
+  
+  .sfbg {
+    background: rgba(255, 255, 255, 0.05) !important;
+  }
+}
+
+/* YouTube */
+@-moz-document domain(youtube.com) {
+  #masthead {
+    background: rgba(33, 33, 33, 0.7) !important;
+    backdrop-filter: blur(15px);
+  }
+  
+  ytd-app {
+    background: transparent !important;
+  }
+}
+
+/* GitHub */
+@-moz-document domain(github.com) {
+  body {
+    background: transparent !important;
+  }
+  
+  .Header {
+    background: rgba(36, 41, 47, 0.8) !important;
+    backdrop-filter: blur(15px);
+  }
+}
+
+/* Reddit */
+@-moz-document domain(reddit.com) {
+  body, #SHORTCUT_FOCUSABLE_DIV {
+    background: transparent !important;
+  }
+  
+  header {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(15px);
+  }
+}
+
+/* Twitter/X */
+@-moz-document domain(twitter.com), domain(x.com) {
+  body {
+    background: transparent !important;
+  }
+  
+  [data-testid="primaryColumn"] {
+    background: rgba(255, 255, 255, 0.03) !important;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@-moz-document url-prefix() {
+  /* High contrast mode override */
+  @media (prefers-contrast: high) {
+    body,
+    header, nav, footer,
+    .card, .panel {
+      background: rgba(255, 255, 255, 0.15) !important;
+      backdrop-filter: blur(5px);
+    }
+  }
+  
+  /* Reduced transparency for accessibility */
+  @media (prefers-reduced-transparency) {
+    body,
+    header, nav, footer,
+    .card, .panel {
+      opacity: 0.95 !important;
+      backdrop-filter: none;
+    }
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  /* Disable all transparency for printing */
+  * {
+    background: white !important;
+    backdrop-filter: none !important;
+    opacity: 1 !important;
+  }
+}
