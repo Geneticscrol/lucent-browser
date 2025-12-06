@@ -33,6 +33,11 @@
   background: transparent !important;
   backdrop-filter: blur(var(--lucent-blur-strength));
   -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+#main-window:not([inFullscreen]) {
+  background-color: transparent !important;
 }
 
 /* Remove default background */
@@ -40,10 +45,29 @@
   background: transparent !important;
 }
 
+#main-window > vbox {
+  background: transparent !important;
+}
+
+#appcontent,
+#tabbrowser-tabpanels,
+tabpanels {
+  background: transparent !important;
+}
+
 #navigator-toolbox {
   background: var(--lucent-bg-primary) !important;
+  background-color: var(--lucent-bg-primary) !important;
   backdrop-filter: blur(var(--lucent-blur-strong));
   border: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Additional toolbar transparency */
+toolbar {
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
 /* ===== TABS ===== */

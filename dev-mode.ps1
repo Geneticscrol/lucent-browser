@@ -28,7 +28,8 @@ if (-not $firefoxExe) {
     $customPath = Read-Host "Enter Firefox executable path (or press Enter to exit)"
     if ($customPath -and (Test-Path $customPath)) {
         $firefoxExe = $customPath
-    } else {
+    }
+    else {
         exit 1
     }
 }
@@ -47,6 +48,19 @@ if (-not (Test-Path $devProfile)) {
 # Copy user.js
 Write-Host "⚙️  Copying privacy configuration..." -ForegroundColor Cyan
 Copy-Item "$PSScriptRoot\configs\user.js" "$devProfile\user.js" -Force
+
+# Add transparency-specific settings
+$transparencySettings = @"
+
+// === LUCENT TRANSPARENCY SETTINGS ===
+user_pref("gfx.webrender.all", true);
+user_pref("gfx.webrender.enabled", true);
+user_pref("layers.acceleration.force-enabled", true);
+user_pref("layout.css.backdrop-filter.enabled", true);
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+"@
+
+Add-Content -Path "$devProfile\user.js" -Value $transparencySettings -Encoding UTF8
 
 # Create symlinks for live CSS editing (or copy if symlinks fail)
 Write-Host "🎨 Setting up CSS files for live editing..." -ForegroundColor Cyan
@@ -67,7 +81,8 @@ try {
     
     Write-Host "✓ Created symlinks - CSS changes will apply instantly!" -ForegroundColor Green
     $liveEdit = $true
-} catch {
+}
+catch {
     # Fallback to copying
     Copy-Item $userChromeSource $userChromeTarget -Force
     Copy-Item $userContentSource $userContentTarget -Force
@@ -84,7 +99,8 @@ if ($liveEdit) {
     Write-Host "   - Edit: chrome\userChrome.css (browser UI)" -ForegroundColor White
     Write-Host "   - Edit: chrome\userContent.css (web pages)" -ForegroundColor White
     Write-Host "   - Changes apply after browser restart (Ctrl+Shift+Q then rerun)" -ForegroundColor White
-} else {
+}
+else {
     Write-Host "   - Edit: lucent-dev-profile\chrome\userChrome.css (browser UI)" -ForegroundColor White
     Write-Host "   - Edit: lucent-dev-profile\chrome\userContent.css (web pages)" -ForegroundColor White
     Write-Host "   - Restart browser to see changes (Ctrl+Shift+Q then rerun)" -ForegroundColor White

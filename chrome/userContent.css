@@ -19,13 +19,34 @@
   /* Make body backgrounds translucent */
   body {
     background: transparent !important;
+    background-color: transparent !important;
     backdrop-filter: blur(10px);
   }
   
-  /* Override solid backgrounds */
+  /* Override ALL backgrounds */
   body[style*="background-color"],
-  body[style*="background:"] {
+  body[style*="background:"],
+  body[bgcolor] {
     background: var(--lucent-bg-override) !important;
+    background-color: var(--lucent-bg-override) !important;
+  }
+  
+  /* Force transparency on html element */
+  html {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+  
+  /* Override all potential background containers */
+  #root,
+  #app,
+  #content,
+  #wrapper,
+  .app,
+  .page,
+  .container-fluid {
+    background: transparent !important;
+    background-color: transparent !important;
   }
 }
 
@@ -37,8 +58,10 @@
   .header,
   .navbar,
   .nav {
-    background: rgba(255, 255, 255, 0.03) !important;
-    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.05) !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
   }
   
   /* Sidebars */
@@ -63,14 +86,27 @@
   .content,
   .container {
     background: transparent !important;
+    background-color: transparent !important;
   }
   
-  /* Cards and panels */
+  /* Cards and panels - stronger acrylic effect */
+  .card,
+  .panel,
+  .box,
+  .widget,
+  .module {
+    background: rgba(255, 255, 255, 0.08) !important;
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(20px) saturate(180%) brightness(110%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(110%);
+  }
+  
+  /* Add acrylic borders */
   .card,
   .panel,
   .box {
-    background: rgba(255, 255, 255, 0.04) !important;
-    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important;
   }
 }
 
@@ -249,6 +285,44 @@
       opacity: 0.95 !important;
       backdrop-filter: none;
     }
+  }
+}
+
+/* ===== UNIVERSAL BACKGROUND OVERRIDE ===== */
+@-moz-document url-prefix() {
+  /* Force ALL elements with backgrounds to be translucent */
+  *[style*="background"] {
+    backdrop-filter: blur(15px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
+  }
+  
+  /* All divs with background colors */
+  div[style*="background-color"],
+  div[style*="background:"],
+  section[style*="background"],
+  aside[style*="background"] {
+    background: rgba(255, 255, 255, 0.06) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  }
+  
+  /* Make all major layout containers translucent */
+  body > div,
+  body > section,
+  body > main,
+  #root > *,
+  #app > *,
+  #__next > * {
+    background: transparent !important;
+  }
+  
+  /* Force acrylic effect on common classes */
+  [class*="background"],
+  [class*="wrapper"],
+  [class*="container"],
+  [class*="layout"] {
+    backdrop-filter: blur(15px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
   }
 }
 

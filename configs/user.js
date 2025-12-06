@@ -326,6 +326,18 @@ user_pref("browser.startup.homepage_override.mstone", "ignore");
 user_pref("startup.homepage_welcome_url", "");
 user_pref("startup.homepage_welcome_url.additional", "");
 
+// Enable compositor features for transparency
+user_pref("gfx.webrender.all", true);
+user_pref("gfx.webrender.enabled", true);
+user_pref("layers.acceleration.force-enabled", true);
+user_pref("layers.offmainthreadcomposition.enabled", true);
+
+// Enable backdrop-filter support
+user_pref("layout.css.backdrop-filter.enabled", true);
+
+// Disable window rounded corners that interfere with transparency
+user_pref("widget.disable-workspace-management", true);
+
 /******************************************************************************
  * END OF CONFIGURATION                                                      *
-******************************************************************************/
+*******************************************************************************/
