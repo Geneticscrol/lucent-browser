@@ -1,0 +1,19 @@
+{
+  "name": "lucent-browser-transparency",
+  "version": "1.0.0",
+  "description": "Transparency enabler for Lucent Browser",
+  "main": "transparency-module.js",
+  "scripts": {
+    "enable": "node transparency-module.js",
+    "install-deps": "npm install"
+  },
+  "dependencies": {
+    "ffi-napi": "^4.0.3",
+    "ref-napi": "^3.0.3",
+    "ref-struct-napi": "^1.1.1"
+  },
+  "devDependencies": {},
+  "keywords": ["firefox", "transparency", "acrylic", "blur"],
+  "author": "Lucent Browser",
+  "license": "MPL-2.0"
+}

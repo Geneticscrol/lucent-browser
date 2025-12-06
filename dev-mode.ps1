@@ -114,11 +114,39 @@ Write-Host "   - Ctrl+Shift+Q     : Quit browser" -ForegroundColor White
 Write-Host "   - about:config     : Advanced settings" -ForegroundColor White
 
 Write-Host ""
+Write-Host "🪟 Window Transparency:" -ForegroundColor Cyan
+Write-Host "   For true window transparency, after browser starts:" -ForegroundColor White
+Write-Host "   Run in another terminal: .\apply-transparency.ps1" -ForegroundColor Yellow
+Write-Host ""
+
 Write-Host "🚀 Launching Lucent Browser in development mode..." -ForegroundColor Cyan
 Write-Host ""
 
-# Launch Firefox with dev profile
-& $firefoxExe -no-remote -profile $devProfile
+# Launch Firefox with dev profile in background
+Start-Process -FilePath $firefoxExe -ArgumentList "-no-remote", "-profile", $devProfile
+
+# Wait a moment for Firefox to start
+Start-Sleep -Seconds 3
+
+# Check if transparency module is installed
+if (Test-Path "$PSScriptRoot\transparency-module\node_modules") {
+    Write-Host "🎨 Applying window transparency..." -ForegroundColor Cyan
+    try {
+        & node "$PSScriptRoot\transparency-module\transparency-module.js"
+    } catch {
+        Write-Host "⚠️  Window transparency module failed" -ForegroundColor Yellow
+        Write-Host "   Webpage blur effects still work!" -ForegroundColor White
+    }
+} else {
+    Write-Host ""
+    Write-Host "💡 Want window-level transparency?" -ForegroundColor Cyan
+    Write-Host "   Run: .\install-transparency.ps1" -ForegroundColor Yellow
+    Write-Host "   Then: .\apply-transparency.ps1" -ForegroundColor Yellow
+}
 
 Write-Host ""
-Write-Host "✨ Browser closed. Run this script again to test changes!" -ForegroundColor Green
+Write-Host "✨ Browser launched with acrylic effects!" -ForegroundColor Green
+Write-Host "   - Tabs have blur effect" -ForegroundColor White
+Write-Host "   - Websites have translucent backgrounds" -ForegroundColor White
+Write-Host "   - All UI elements are semi-transparent" -ForegroundColor White
+Write-Host ""

@@ -70,35 +70,76 @@ toolbar {
   background-color: transparent !important;
 }
 
-/* ===== TABS ===== */
-.tabbrowser-tab {
+/* ===== TABS - EXTREME ACRYLIC EFFECT ===== */
+#TabsToolbar {
   background: transparent !important;
-  backdrop-filter: blur(var(--lucent-blur-strength));
+  background-color: transparent !important;
+}
+
+.tabbrowser-tab {
+  background: rgba(30, 30, 35, 0.3) !important;
+  background-color: rgba(30, 30, 35, 0.3) !important;
+  backdrop-filter: blur(30px) saturate(180%) brightness(110%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(180%) brightness(110%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px 8px 0 0 !important;
+  margin: 2px 2px 0 2px !important;
   transition: var(--lucent-transition);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
 }
 
 .tabbrowser-tab:hover {
-  background: var(--lucent-bg-secondary) !important;
+  background: rgba(40, 40, 45, 0.4) !important;
+  backdrop-filter: blur(35px) saturate(200%) brightness(115%) !important;
+  -webkit-backdrop-filter: blur(35px) saturate(200%) brightness(115%) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 6px 20px rgba(100, 150, 255, 0.3) !important;
 }
 
 .tabbrowser-tab[selected="true"] {
-  background: var(--lucent-bg-secondary) !important;
-  border-bottom: 2px solid var(--lucent-accent) !important;
+  background: rgba(50, 50, 55, 0.5) !important;
+  backdrop-filter: blur(40px) saturate(200%) brightness(120%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(120%) !important;
+  border: 2px solid var(--lucent-accent) !important;
+  border-bottom: none !important;
+  box-shadow: 0 8px 24px rgba(100, 150, 255, 0.5) !important;
+  z-index: 10 !important;
 }
 
 .tab-background {
   background: transparent !important;
+  background-color: transparent !important;
   border: none !important;
 }
 
-.tab-content {
-  backdrop-filter: blur(10px);
+.tab-background-start,
+.tab-background-end,
+.tab-background-middle {
+  background: transparent !important;
 }
 
-/* Tab label */
+.tab-content {
+  backdrop-filter: blur(15px);
+  background: transparent !important;
+}
+
+/* Tab label with stronger text */
 .tab-label {
   color: var(--lucent-text) !important;
-  font-weight: 500;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Tab close button */
+.tab-close-button {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 4px !important;
+  padding: 4px !important;
+}
+
+.tab-close-button:hover {
+  background: rgba(255, 50, 50, 0.6) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
 /* ===== TOOLBAR ===== */

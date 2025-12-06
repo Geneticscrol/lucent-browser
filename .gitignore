@@ -56,3 +56,5 @@ yarn-error.log*
 .coverage
 htmlcov/
 lucent-dev-profile/
+transparency-module/node_modules/
+transparency-module/package-lock.json

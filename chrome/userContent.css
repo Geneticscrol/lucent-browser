@@ -8,9 +8,26 @@
 /* ===== ROOT VARIABLES ===== */
 @-moz-document url-prefix() {
   :root {
-    --lucent-content-opacity: 0.90;
-    --lucent-bg-override: rgba(255, 255, 255, 0.05);
-    --lucent-bg-dark: rgba(0, 0, 0, 0.1);
+    --lucent-content-opacity: 0.15 !important;
+    --lucent-bg-override: rgba(255, 255, 255, 0.03) !important;
+    --lucent-bg-dark: rgba(0, 0, 0, 0.05) !important;
+    --lucent-blur-web: blur(25px) saturate(180%) brightness(110%) !important;
+  }
+}
+
+/* EXTREME TRANSPARENCY MODE - OVERRIDE EVERYTHING */
+@-moz-document url-prefix() {
+  * {
+    /* Force transparency on all elements with backgrounds */
+  }
+  
+  *[style*="background-color: rgb"],
+  *[style*="background: rgb"],
+  *[style*="background-color:#"],
+  *[style*="background:#"] {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: var(--lucent-blur-web) !important;
+    -webkit-backdrop-filter: var(--lucent-blur-web) !important;
   }
 }
 
@@ -57,26 +74,35 @@
   nav,
   .header,
   .navbar,
-  .nav {
-    background: rgba(255, 255, 255, 0.05) !important;
-    background-color: rgba(255, 255, 255, 0.05) !important;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  .nav,
+  [role="navigation"],
+  [role="banner"] {
+    background: rgba(255, 255, 255, 0.03) !important;
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(30px) saturate(200%) brightness(110%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(200%) brightness(110%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
   }
   
   /* Sidebars */
   aside,
   .sidebar,
-  .side-nav {
+  .side-nav,
+  [role="complementary"] {
     background: rgba(255, 255, 255, 0.02) !important;
-    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
   }
   
   /* Footers */
   footer,
-  .footer {
-    background: rgba(0, 0, 0, 0.05) !important;
-    backdrop-filter: blur(10px);
+  .footer,
+  [role="contentinfo"] {
+    background: rgba(0, 0, 0, 0.03) !important;
+    background-color: rgba(0, 0, 0, 0.03) !important;
+    backdrop-filter: blur(20px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
   }
   
   /* Content containers */
